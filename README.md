@@ -1,2 +1,2 @@
 # SHA-embarcada-py
-Embarcada raspberry 
+Projeto embarcado para captação de tags.
