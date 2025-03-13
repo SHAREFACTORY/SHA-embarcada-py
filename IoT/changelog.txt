@@ -1,0 +1,8 @@
+V0_2 {
+	Adicionado DB Local;
+	Otimizado inputs no banco de dados, reduzindo severamente o custo de armazenamento;
+}
+
+03/04/24 {
+Adicionado Script para gerar certificado X509 (SSL) para comunicações MQTT fora do ambiente AWS
+}

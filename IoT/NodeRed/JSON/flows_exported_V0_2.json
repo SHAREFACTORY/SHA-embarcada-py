@@ -1,0 +1,447 @@
+[
+    {
+        "id": "88aa36305bd41d5f",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "2c1f625aa8bfec46",
+        "type": "mqtt out",
+        "z": "88aa36305bd41d5f",
+        "name": "MQTT_Out",
+        "topic": "clp",
+        "qos": "1",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "5ee125acd6dbcf9b",
+        "x": 1050,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "05b00ccf37325c96",
+        "type": "status",
+        "z": "88aa36305bd41d5f",
+        "name": "",
+        "scope": [
+            "2c1f625aa8bfec46"
+        ],
+        "x": 100,
+        "y": 40,
+        "wires": [
+            [
+                "bf1946c2c925424c"
+            ]
+        ]
+    },
+    {
+        "id": "bf1946c2c925424c",
+        "type": "change",
+        "z": "88aa36305bd41d5f",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "mqtt-status",
+                "pt": "flow",
+                "to": "status",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 330,
+        "y": 40,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "79ddc6443b4c9739",
+        "type": "function",
+        "z": "88aa36305bd41d5f",
+        "name": "Buffer Data",
+        "func": "let status = flow.get(\"mqtt-status\") || {};\nlet buffer = flow.get(\"buffer\") || [];\nif (status.fill ==\"green\")\n    return msg;\nelse\n{\n    node.log(\"buffering data\");\n    if (buffer.length<20)\n    {\n        buffer.push({\"payload\":msg.payload,\"topic\":msg.topic});\n        flow.set(\"buffer\",buffer); //Armazena as informações e tenta reenviar\n    }\n}",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 550,
+        "y": 80,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d6774c81cae03d97",
+        "type": "eth-ip in",
+        "z": "88aa36305bd41d5f",
+        "endpoint": "7ca3a992513b5801",
+        "mode": "all",
+        "variable": "EA_34FIT2311.val",
+        "program": "",
+        "name": "PLC_Reading",
+        "gatherMetrics": true,
+        "includeTimestamp": true,
+        "x": 110,
+        "y": 140,
+        "wires": [
+            [
+                "123be11b23fda366"
+            ]
+        ],
+        "outputLabels": [
+            "test"
+        ]
+    },
+    {
+        "id": "82bc3c8f961b85d7",
+        "type": "function",
+        "z": "88aa36305bd41d5f",
+        "name": "Send Buffer Data",
+        "func": "let status = flow.get(\"mqtt-status\") || {};\nlet buffer =flow.get(\"buffer\") || [];\nif (status.fill ==\"green\")\n{\n    while (buffer.length >0){\n        node.log(\"Sending Buffering Data\");\n        let temp = buffer.pop();\n        msg.payload=temp.payload;\n        msg.topic=temp.topic;\n        node.send(msg);\n    }\n}",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 330,
+        "y": 200,
+        "wires": [
+            [
+                "8e671477271e653f"
+            ]
+        ]
+    },
+    {
+        "id": "e575ce0ca46e087f",
+        "type": "batch",
+        "z": "88aa36305bd41d5f",
+        "name": "",
+        "mode": "interval",
+        "count": 10,
+        "overlap": 0,
+        "interval": "60",
+        "allowEmptySequence": false,
+        "topics": [],
+        "x": 540,
+        "y": 140,
+        "wires": [
+            [
+                "277b27ac730c2bb1"
+            ]
+        ]
+    },
+    {
+        "id": "277b27ac730c2bb1",
+        "type": "join",
+        "z": "88aa36305bd41d5f",
+        "name": "",
+        "mode": "auto",
+        "build": "object",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": true,
+        "timeout": "",
+        "count": "",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "",
+        "reduceFixup": "",
+        "x": 730,
+        "y": 140,
+        "wires": [
+            [
+                "c029d4a9f496c548",
+                "2c1f625aa8bfec46"
+            ]
+        ]
+    },
+    {
+        "id": "8e671477271e653f",
+        "type": "batch",
+        "z": "88aa36305bd41d5f",
+        "name": "",
+        "mode": "interval",
+        "count": 10,
+        "overlap": 0,
+        "interval": "15",
+        "allowEmptySequence": false,
+        "topics": [],
+        "x": 540,
+        "y": 200,
+        "wires": [
+            [
+                "80a28f7523296f77"
+            ]
+        ]
+    },
+    {
+        "id": "80a28f7523296f77",
+        "type": "join",
+        "z": "88aa36305bd41d5f",
+        "name": "",
+        "mode": "auto",
+        "build": "object",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": true,
+        "timeout": "",
+        "count": "",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "",
+        "reduceFixup": "",
+        "x": 730,
+        "y": 200,
+        "wires": [
+            [
+                "2c1f625aa8bfec46"
+            ]
+        ]
+    },
+    {
+        "id": "ad0b2fc356407546",
+        "type": "inject",
+        "z": "88aa36305bd41d5f",
+        "name": "15Min Resend",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "900",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 120,
+        "y": 200,
+        "wires": [
+            [
+                "82bc3c8f961b85d7"
+            ]
+        ]
+    },
+    {
+        "id": "ce3ffe8c0788788f",
+        "type": "mysql",
+        "z": "88aa36305bd41d5f",
+        "mydb": "34e982555d20788d",
+        "name": "mysql_connection",
+        "x": 1190,
+        "y": 140,
+        "wires": [
+            [
+                "6a059a217bfba119"
+            ]
+        ]
+    },
+    {
+        "id": "6a059a217bfba119",
+        "type": "debug",
+        "z": "88aa36305bd41d5f",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1400,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "bb3bdffa09515513",
+        "type": "inject",
+        "z": "88aa36305bd41d5f",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "CREATE TABLE PLCv1 (     timestamp timestamp,     value DECIMAL(10, 2),     topic VARCHAR(255) );",
+        "payload": "",
+        "payloadType": "date",
+        "x": 120,
+        "y": 280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d2ce6a87140f99dc",
+        "type": "debug",
+        "z": "88aa36305bd41d5f",
+        "name": "debug 3",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1120,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "123be11b23fda366",
+        "type": "delay",
+        "z": "88aa36305bd41d5f",
+        "name": "1 msg/5s",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "5",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 320,
+        "y": 140,
+        "wires": [
+            [
+                "e575ce0ca46e087f",
+                "79ddc6443b4c9739"
+            ]
+        ]
+    },
+    {
+        "id": "c029d4a9f496c548",
+        "type": "function",
+        "z": "88aa36305bd41d5f",
+        "name": "function 1",
+        "func": "//Call main Function parsing msg\nmain(msg);\n\n// Function node main handler\nfunction main(msg) {\n    // Check if msg.payload is defined and not empty\n    if (msg.payload) {\n        // Process the payload\n        processPayload(msg.payload);\n    }\n\n    // Return the original message for debugging purposes\n    return msg;\n}\n\n// Function to handle the incoming message payload\nfunction processPayload(payload) {\n    //Initialize context to store last values for topics, if there's any, it will be empty instead of full\n    let lastValues = context.get('lastValues') || {};\n\n    // Check if payload is an array\n    if (Array.isArray(payload)) {\n\n        // Iterate over the array of objects\n        payload.forEach(obj => {\n\n            // Iterate over the keys (topics) in each object\n            Object.keys(obj).forEach(topic => {\n\n                // Extract data object for the current topic\n                const dataObj = obj[topic];\n\n                // Extract necessary values from the data object\n                const timestamp = dataObj.timestamp || 0;\n                const value = dataObj.value;\n                const topicName = dataObj.topic || '';\n\n                // Initialize last value for the topic if not already set\n                if (!lastValues.hasOwnProperty(topic)) {\n                    lastValues[topic] = null;\n                }\n\n                //Check if there's a valid value before send  \n                if (value !== null) {\n                    const lastValue = lastValues[topic];\n                    const difference = Math.abs(value - lastValue);\n\n                    if (lastValue === null || difference > 0.1) {\n\n                        // Convert Unix timestamp to milliseconds and create a Date object\n                        const date = new Date(timestamp * 1000); // Multiply by 1000 to convert seconds to milliseconds\n\n                        // Format the datetime string as 'YYYY-MM-DD HH:MM:SS'\n                        const formattedTimestamp = date.toISOString().slice(0, 19).replace('T', ' ');\n\n                        // Construct the SQL query with the formatted timestamp\n                        const query = `INSERT INTO PLCv1 (timestamp, value, topic) VALUES ('${formattedTimestamp}', '${value}', '${topic}');`\n\n                        // Send debug message before sending the SQL query\n                        node.warn(`Sending SQL query: ${query}`);\n\n                        // Send the query to the connected MySQL node\n                        node.send({\n                            topic: query, // Set the query as the topic\n                            payload: [formattedTimestamp, value, topic] // Pass values as an array in payload\n                        });\n                    } else {\n                        // Value difference is not significant, do not send to MySQL query node\n                        node.warn(`Skipping value for topic '${topic}' due to insignificant difference`);\n                    }\n                    lastValues[topic] = value;\n                } else {\n                    node.warn(\"Skipping null value for topic: \" + topic);\n                }\n                // Update last value for the topic\n          \n            });\n        });\n    }\n    // Save updated lastValues to context\n    context.set('lastValues', lastValues);\n}",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 920,
+        "y": 140,
+        "wires": [
+            [
+                "ce3ffe8c0788788f",
+                "d2ce6a87140f99dc"
+            ]
+        ]
+    },
+    {
+        "id": "5ee125acd6dbcf9b",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "a2m4nfle1xwxvu-ats.iot.us-east-2.amazonaws.com",
+        "port": "8883",
+        "tls": "b223b119f694da50",
+        "clientid": "prototipo",
+        "autoConnect": true,
+        "usetls": true,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "7ca3a992513b5801",
+        "type": "eth-ip endpoint",
+        "address": "192.168.1.30",
+        "slot": "0",
+        "cycletime": "3000",
+        "timeout": "10000",
+        "name": "Pepsico",
+        "connectedMess": true,
+        "vartable": {
+            "": {
+                "EA_34FIT2311.val": {
+                    "type": "REAL",
+                    "mapping": ""
+                },
+                "EA_34AIT2301.val": {
+                    "type": "REAL",
+                    "mapping": ""
+                }
+            }
+        }
+    },
+    {
+        "id": "34e982555d20788d",
+        "type": "MySQLdatabase",
+        "name": "teste",
+        "host": "127.0.0.1",
+        "port": "3306",
+        "db": "node",
+        "tz": "",
+        "charset": "UTF8"
+    },
+    {
+        "id": "b223b119f694da50",
+        "type": "tls-config",
+        "name": "",
+        "cert": "",
+        "key": "",
+        "ca": "",
+        "certname": "8dd7da6eae560a1942f5dd9b87313c027edcbafc71f09eac9982cea1f4362c8a-certificate.pem.crt",
+        "keyname": "8dd7da6eae560a1942f5dd9b87313c027edcbafc71f09eac9982cea1f4362c8a-private.pem.key",
+        "caname": "AmazonRootCA1.pem",
+        "servername": "",
+        "verifyservercert": true,
+        "alpnprotocol": ""
+    }
+]

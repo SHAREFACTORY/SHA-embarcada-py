@@ -1,0 +1,503 @@
+[
+    {
+        "id": "6e5f2cb110d4cbd6",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "7ca3a992513b5801",
+        "type": "eth-ip endpoint",
+        "address": "192.168.1.30",
+        "slot": "0",
+        "cycletime": "3000",
+        "timeout": "10000",
+        "name": "Pepsico",
+        "connectedMess": true,
+        "vartable": {
+            "": {
+                "EA_34FIT2311.val": {
+                    "type": "REAL",
+                    "mapping": ""
+                },
+                "EA_34AIT2301.val": {
+                    "type": "REAL",
+                    "mapping": ""
+                }
+            }
+        }
+    },
+    {
+        "id": "aab2c7fa7dbd06fa",
+        "type": "s7 endpoint",
+        "d": true,
+        "transport": "iso-on-tcp",
+        "address": "192.168.1.30",
+        "port": "102",
+        "rack": "0",
+        "slot": "1",
+        "localtsaphi": "01",
+        "localtsaplo": "00",
+        "remotetsaphi": "01",
+        "remotetsaplo": "00",
+        "connmode": "rack-slot",
+        "adapter": "",
+        "busaddr": "2",
+        "cycletime": "1000",
+        "timeout": "2000",
+        "name": "",
+        "vartable": []
+    },
+    {
+        "id": "0b40577b11badc7f",
+        "type": "amazon config",
+        "d": true,
+        "name": "AWS",
+        "region": "us-east-1",
+        "proxyRequired": false,
+        "proxy": ""
+    },
+    {
+        "id": "5ee125acd6dbcf9b",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "a2m4nfle1xwxvu-ats.iot.us-east-2.amazonaws.com",
+        "port": "8883",
+        "tls": "b223b119f694da50",
+        "clientid": "prototipo",
+        "autoConnect": true,
+        "usetls": true,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "b223b119f694da50",
+        "type": "tls-config",
+        "name": "",
+        "cert": "",
+        "key": "",
+        "ca": "",
+        "certname": "8dd7da6eae560a1942f5dd9b87313c027edcbafc71f09eac9982cea1f4362c8a-certificate.pem.crt",
+        "keyname": "8dd7da6eae560a1942f5dd9b87313c027edcbafc71f09eac9982cea1f4362c8a-private.pem.key",
+        "caname": "AmazonRootCA1.pem",
+        "servername": "",
+        "verifyservercert": true,
+        "alpnprotocol": ""
+    },
+    {
+        "id": "a009f91af30207fe",
+        "type": "ui_tab",
+        "name": "Home",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "c02b14be49fa5d82",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-light",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0094CE",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#097479",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": false
+            },
+            "customTheme": {
+                "name": "Untitled Theme 1",
+                "default": "#4B7930",
+                "baseColor": "#4B7930",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#0094CE",
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-backgroundColor": {
+                    "value": "#fafafa",
+                    "edited": false
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#1bbfff",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#111111",
+                    "edited": false
+                },
+                "widget-backgroundColor": {
+                    "value": "#0094ce",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "base-font": {
+                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+                }
+            },
+            "angularTheme": {
+                "primary": "indigo",
+                "accents": "blue",
+                "warn": "red",
+                "background": "grey",
+                "palette": "light"
+            }
+        },
+        "site": {
+            "name": "Node-RED Dashboard",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "lockMenu": "false",
+            "allowTempTheme": "true",
+            "dateFormat": "DD/MM/YYYY",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 0,
+                "py": 0
+            }
+        }
+    },
+    {
+        "id": "19dcbaed3998df7a",
+        "type": "ui_group",
+        "name": "Default",
+        "tab": "a009f91af30207fe",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "34e982555d20788d",
+        "type": "MySQLdatabase",
+        "name": "",
+        "host": "127.0.0.1",
+        "port": "3306",
+        "db": "data",
+        "tz": "",
+        "charset": "UTF8"
+    },
+    {
+        "id": "616fda52d151f510",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "uga",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "6c3bcda5dc029f2d",
+        "type": "mqtt out",
+        "z": "6e5f2cb110d4cbd6",
+        "name": "MQTT_Out",
+        "topic": "clp",
+        "qos": "1",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "5ee125acd6dbcf9b",
+        "x": 890,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "e9db3dd5081f7623",
+        "type": "status",
+        "z": "6e5f2cb110d4cbd6",
+        "name": "",
+        "scope": [
+            "6c3bcda5dc029f2d"
+        ],
+        "x": 80,
+        "y": 40,
+        "wires": [
+            [
+                "69b0f2ed5594bad3"
+            ]
+        ]
+    },
+    {
+        "id": "69b0f2ed5594bad3",
+        "type": "change",
+        "z": "6e5f2cb110d4cbd6",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "mqtt-status",
+                "pt": "flow",
+                "to": "status",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 310,
+        "y": 40,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c9ec4a07ad4ba106",
+        "type": "function",
+        "z": "6e5f2cb110d4cbd6",
+        "name": "Buffer Data",
+        "func": "let status = flow.get(\"mqtt-status\") || {};\nlet buffer = flow.get(\"buffer\") || [];\nif (status.fill ==\"green\")\n    return msg;\nelse\n{\n    node.log(\"buffering data\");\n    if (buffer.length<20)\n    {\n        buffer.push({\"payload\":msg.payload,\"topic\":msg.topic});\n        flow.set(\"buffer\",buffer); //Armazena as informações e tenta reenviar\n    }\n}",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 290,
+        "y": 100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "05b0ce4b45ec3105",
+        "type": "eth-ip in",
+        "z": "6e5f2cb110d4cbd6",
+        "endpoint": "7ca3a992513b5801",
+        "mode": "all",
+        "variable": "EA_34FIT2311.val",
+        "program": "",
+        "name": "PLC_Reading",
+        "gatherMetrics": true,
+        "includeTimestamp": true,
+        "x": 90,
+        "y": 140,
+        "wires": [
+            [
+                "c9ec4a07ad4ba106",
+                "d6bb33288f71abee"
+            ]
+        ],
+        "outputLabels": [
+            "test"
+        ]
+    },
+    {
+        "id": "1a28c01201ae26b8",
+        "type": "function",
+        "z": "6e5f2cb110d4cbd6",
+        "name": "Send Buffer Data",
+        "func": "let status = flow.get(\"mqtt-status\") || {};\nlet buffer =flow.get(\"buffer\") || [];\nif (status.fill ==\"green\")\n{\n    while (buffer.length >0){\n        node.log(\"Sending Buffering Data\");\n        let temp = buffer.pop();\n        msg.payload=temp.payload;\n        msg.topic=temp.topic;\n        node.send(msg);\n    }\n}",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 310,
+        "y": 200,
+        "wires": [
+            [
+                "5ee263de7a32d4eb"
+            ]
+        ]
+    },
+    {
+        "id": "d6bb33288f71abee",
+        "type": "batch",
+        "z": "6e5f2cb110d4cbd6",
+        "name": "",
+        "mode": "interval",
+        "count": 10,
+        "overlap": 0,
+        "interval": "60",
+        "allowEmptySequence": false,
+        "topics": [],
+        "x": 520,
+        "y": 140,
+        "wires": [
+            [
+                "caaf85a8f3c1b555"
+            ]
+        ]
+    },
+    {
+        "id": "caaf85a8f3c1b555",
+        "type": "join",
+        "z": "6e5f2cb110d4cbd6",
+        "name": "",
+        "mode": "auto",
+        "build": "object",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": true,
+        "timeout": "",
+        "count": "",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "",
+        "reduceFixup": "",
+        "x": 710,
+        "y": 140,
+        "wires": [
+            [
+                "6c3bcda5dc029f2d"
+            ]
+        ]
+    },
+    {
+        "id": "5ee263de7a32d4eb",
+        "type": "batch",
+        "z": "6e5f2cb110d4cbd6",
+        "name": "",
+        "mode": "interval",
+        "count": 10,
+        "overlap": 0,
+        "interval": "15",
+        "allowEmptySequence": false,
+        "topics": [],
+        "x": 520,
+        "y": 200,
+        "wires": [
+            [
+                "ba998c4386e10749"
+            ]
+        ]
+    },
+    {
+        "id": "ba998c4386e10749",
+        "type": "join",
+        "z": "6e5f2cb110d4cbd6",
+        "name": "",
+        "mode": "auto",
+        "build": "object",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": true,
+        "timeout": "",
+        "count": "",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "",
+        "reduceFixup": "",
+        "x": 710,
+        "y": 200,
+        "wires": [
+            [
+                "6c3bcda5dc029f2d"
+            ]
+        ]
+    },
+    {
+        "id": "4c56b14331232b25",
+        "type": "inject",
+        "z": "6e5f2cb110d4cbd6",
+        "name": "15Min Resend",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "900",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 100,
+        "y": 200,
+        "wires": [
+            [
+                "1a28c01201ae26b8"
+            ]
+        ]
+    }
+]
